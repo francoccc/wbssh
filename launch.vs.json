@@ -1,0 +1,16 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "wbssh.exe",
+      "name": "wbssh.exe",
+      "args": [
+        "10.20.128.121",
+        "franco"
+      ]
+    }
+  ]
+}
