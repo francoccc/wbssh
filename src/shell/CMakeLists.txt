@@ -1,5 +1,6 @@
 
 set(LIBSHELL_VERSION 1.0.1)
+set(LIB_NAME "libshell")
 
 
 # Convert GNU Make assignments into CMake ones.
@@ -13,10 +14,11 @@ function(transform_makefile_inc INPUT_FILE OUTPUT_FILE)
   set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${INPUT_FILE}")
 endfunction()
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+message("src/shell: ${CMAKE_CURRENT_BINARY_DIR}")
 
-TRANSFORM_MAKEFILE_INC("Makefile.inc", "${CMAKE_CURRENT_BINARY_DIR}/Makefile.inc.cmake")
-include("${CMAKE_CURRET_BINARY_DIR}/Makefile.inc.cmake")
+include_directories(${PROJECT_SOURCE_DIR}/include)
+transform_makefile_inc("Makefile.inc" "${CMAKE_CURRENT_BINARY_DIR}/Makefile.inc.cmake")
+include("${CMAKE_CURRENT_BINARY_DIR}/Makefile.inc.cmake")
 set(SOURCES ${CSOURCES})
 
-add_library()
+add_library(${LIB_NAME}_static STATIC ${SOURCES})
